@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liquid Effect - Gradient</title>
+  <style>
+    body, html, #app {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      touch-action: none;
+    }
+
+    #app {
+      height: 100%;
+      font-family: "Montserrat", serif;
+    }
+
+    #canvas {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      overflow: hidden;
+    }
+
+    a {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #fff;
+      text-decoration: none;
+      text-shadow: 1px 1px 2px black;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <canvas id="canvas"></canvas>
+    <a target="_blank" href="https://www.framer.com/marketplace/components/liquid-effect/">Liquid Gradient Effect</a>
+  </div>
+
+  <script type="module">
+    import LiquidBackground from 'https://cdn.jsdelivr.net/npm/threejs-components@0.0.22/build/backgrounds/liquid1.min.js'
+
+    const app = LiquidBackground(document.getElementById('canvas'))
+
+    // Create gradient texture instead of loading an image
+    function createGradientTexture() {
+      const canvas = document.createElement('canvas');
+      canvas.width = 512;
+      canvas.height = 512;
+      const ctx = canvas.getContext('2d');
+
+      // Create multi-color gradient
+      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      gradient.addColorStop(0, '#667eea');    // Purple blue
+      gradient.addColorStop(0.5, '#764ba2');  // Purple
+      gradient.addColorStop(1, '#f093fb');    // Pink
+
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      return canvas.toDataURL();
+    }
+
+    // Load gradient as image
+    app.loadImage(createGradientTexture())
+    app.liquidPlane.material.metalness = 0.75
+    app.liquidPlane.material.roughness = 0.25
+    app.liquidPlane.uniforms.displacementScale.value = 5
+    app.setRain(false)
+  </script>
+</body>
+</html>
