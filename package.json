@@ -1,0 +1,27 @@
+{
+  "name": "liquidwater",
+  "version": "1.0.0",
+  "description": "Liquid gradient effect with custom shaders",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "liquid",
+    "gradient",
+    "shader",
+    "threejs",
+    "webgl"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^5.0.0"
+  },
+  "dependencies": {
+    "three": "^0.158.0"
+  }
+}
